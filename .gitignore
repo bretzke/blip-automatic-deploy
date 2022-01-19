@@ -8,7 +8,7 @@
 !.prettierrc.json
 !.eslintrc.json
 !.husky
-!.husky/*
+!.husky/pre-commit
 
 # src
 !src
