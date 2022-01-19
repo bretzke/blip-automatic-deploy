@@ -1,0 +1,10 @@
+{
+    "debug": true,
+    "sourceIndex": "source_bot_key",
+    "destinationIndex": "destination_bot_key",
+    "documentKeys": [
+        "builder_working_configuration",
+        "builder_working_flow",
+        "builder_working_global_actions"
+    ]
+}
