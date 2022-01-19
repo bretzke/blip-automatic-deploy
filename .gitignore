@@ -1,0 +1,21 @@
+*
+
+# /
+!.gitignore
+!AUTHORS.md
+!package.json
+!README.md
+!.prettierrc.json
+!.eslintrc.json
+!.husky
+!.husky/*
+
+# src
+!src
+!src/config.jsonc
+!src/index.js
+!src/services
+!src/services/Deploy.js
+!src/services/FileManager.js
+!src/utils
+!src/utils/HttpRequest.js
