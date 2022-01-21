@@ -60,31 +60,39 @@ module.exports = class Deploy {
     }
 
     Deploy(json = {}) {
+        const keys = {
+            document: '',
+            destination: json.destination,
+            source: json.source
+        };
         this.configs.documentKeys.forEach((documentKey) => {
             this.getDocument(json.source, documentKey)
                 .then((sourceContent) => {
                     if (sourceContent.success) {
                         this.setDocument(json.destination, documentKey, sourceContent)
                             .then((response) => {
-                                const message = `Realizado o deploy da chave "${json.source}" para a chave "${json.destination}"`;
-                                this.debugMessage(message, documentKey, response.status);
+                                keys.document = documentKey;
+                                this.debugMessage({ keys }, response.status);
                             })
                             .catch((e) => {
-                                this.debugMessage(e, documentKey);
+                                keys.document = documentKey;
+                                this.debugMessage({ message: e, keys });
                             });
                     } else {
-                        this.debugMessage(sourceContent.message, documentKey);
+                        keys.document = documentKey;
+                        this.debugMessage({ message: sourceContent.message, keys });
                     }
                 })
                 .catch((e) => {
-                    this.debugMessage(e, documentKey);
+                    keys.document = documentKey;
+                    this.debugMessage({ message: e, keys });
                 });
         });
     }
 
-    debugMessage(message, documentKey = '', status = 'error') {
+    debugMessage(response, status = 'error') {
         // eslint-disable-next-line
-        if (this.configs.debug) console.log({ status, message, documentKey });
+        if (this.configs.debug) console.log({ status, response });
     }
 
     getDefaultJSON(botKey, documentKey, sourceContent = false) {
