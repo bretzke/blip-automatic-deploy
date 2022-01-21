@@ -27,7 +27,7 @@ module.exports = class FileManager {
     }
 
     static createDir(dir) {
-        const dirs = dir.replace('/', '\\').split('\\');
+        const dirs = dir.replaceAll('/', '\\').split('\\');
         let newDir = '';
 
         while (dirs.length) {
